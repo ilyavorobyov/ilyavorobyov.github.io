@@ -1,0 +1,81 @@
+<manifest alg="2" build="2015.1.2.344" opt="false" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive" exportTarget="other" domain="sadas.ru" resolutions="1x,2x" timestamp="1501345207649">
+  <folder name="css">
+    <file name="site_global.css" crc="3793187469"/>
+    <file name="master_a-master.css" crc="3768293774" ref="index"/>
+    <file name="nomq_preview_master_a-master.css" crc="321525473" ref="index"/>
+    <file name="index.css" crc="376356012" ref="index"/>
+    <file name="nomq_index.css" crc="4165709332" ref="index"/>
+  </folder>
+  <folder name="scripts">
+    <file name="jquery-1.8.3.min.js" crc="207176553" ref="index"/>
+    <file name="museutils.js" crc="3790713428" ref="index"/>
+    <file name="whatinput.js" crc="84559013" ref="index"/>
+    <file name="jquery.musepolyfill.bgsize.js" crc="3918880840" ref="index"/>
+    <file name="webpro.js" crc="329496574" ref="index"/>
+    <file name="musewpslideshow.js" crc="394033048" ref="index"/>
+    <file name="jquery.museoverlay.js" crc="4265131668" ref="index"/>
+    <file name="touchswipe.js" crc="497316881" ref="index"/>
+    <file name="jquery.watch.js" crc="4244854265" ref="index"/>
+    <file name="jquery.museresponsive.js" crc="3895133147" ref="index"/>
+  </folder>
+  <folder name="images">
+    <file name="bkg_01.jpg" crc="4173513404" seo="true" ref="index"/>
+    <file name="blank.gif" crc="4208392903" ref="index"/>
+    <file name="bkg_02.jpg" crc="431156423" seo="true" ref="index"/>
+    <file name="bkg_03.jpg" crc="114254416" seo="true" ref="index"/>
+    <file name="bkg_04.jpg" crc="74305810" seo="true" ref="index"/>
+    <file name="arrows-mn_arrow_left.png" crc="319312130" ref="index"/>
+    <file name="arrows-mn_arrow_right.png" crc="418741022" ref="index"/>
+    <file name="loading.gif" crc="3815509949" ref="index"/>
+    <file name="gallery_01.jpg" crc="4170160883" seo="true" ref="index"/>
+    <file name="gallery_03.jpg" crc="4090876642" seo="true" ref="index"/>
+    <file name="gallery_08.jpg" crc="3769852392" seo="true" ref="index"/>
+    <file name="gallery_05.jpg" crc="3819316390" seo="true" ref="index"/>
+    <file name="gallery_02.jpg" crc="409909116" seo="true" ref="index"/>
+    <file name="gallery_07.jpg" crc="173501775" seo="true" ref="index"/>
+    <file name="gallery_04.jpg" crc="77183758" seo="true" ref="index"/>
+    <file name="gallery_01465x311.jpg" crc="76883588" seo="true" ref="index"/>
+    <file name="gallery_03465x311.jpg" crc="4230595870" seo="true" ref="index"/>
+    <file name="gallery_08474x287.jpg" crc="77058218" seo="true" ref="index"/>
+    <file name="gallery_05465x311.jpg" crc="4083676222" seo="true" ref="index"/>
+    <file name="gallery_02465x313.jpg" crc="3983471897" seo="true" ref="index"/>
+    <file name="gallery_07465x303.jpg" crc="388874038" seo="true" ref="index"/>
+    <file name="gallery_08465x282.jpg" crc="3859473877" seo="true" ref="index"/>
+    <file name="gallery_04465x310.jpg" crc="4141713216" seo="true" ref="index"/>
+    <file name="u4752.png" crc="4151799985" ref="index"/>
+    <file name="u4752-r.png" crc="406405558" ref="index"/>
+    <file name="u4752_2x.png" crc="3804202164" ref="index"/>
+    <file name="u4752-r_2x.png" crc="392242708" ref="index"/>
+    <file name="u4754.png" crc="522859609" ref="index"/>
+    <file name="u4754-r.png" crc="3973276399" ref="index"/>
+    <file name="u4754_2x.png" crc="409879086" ref="index"/>
+    <file name="u4754-r_2x.png" crc="4182560983" ref="index"/>
+    <file name="u4756.png" crc="275859143" ref="index"/>
+    <file name="u4756-r.png" crc="287672939" ref="index"/>
+    <file name="u4756_2x.png" crc="154432112" ref="index"/>
+    <file name="u4756-r_2x.png" crc="4271183400" ref="index"/>
+    <file name="u4758.png" crc="4276812820" ref="index"/>
+    <file name="u4758-r.png" crc="20291972" ref="index"/>
+    <file name="u4758_2x.png" crc="376214178" ref="index"/>
+    <file name="u4758-r_2x.png" crc="222384099" ref="index"/>
+    <file name="gallery_01-crop-u4000.jpg" crc="288361525" ref="index"/>
+    <file name="gallery_03-crop-u4245.jpg" crc="3823020042" ref="index"/>
+    <file name="gallery_08-crop-u4299.jpg" crc="4103010419" ref="index"/>
+    <file name="gallery_05-crop-u4344.jpg" crc="377331317" ref="index"/>
+    <file name="gallery_02-crop-u4365.jpg" crc="311898041" ref="index"/>
+    <file name="gallery_07-crop-u4374.jpg" crc="29141329" ref="index"/>
+    <file name="gallery_08-crop-u4399.jpg" crc="4052544648" ref="index"/>
+    <file name="gallery_04-crop-u4254.jpg" crc="432614557" ref="index"/>
+    <file name="arrows-u96-3-fr.png" crc="4008847128" ref="index"/>
+    <file name="arrows-u88-3-fr.png" crc="44461292" ref="index"/>
+    <file name="gallery_01320x213.jpg" crc="457605267" seo="true" ref="index"/>
+    <file name="gallery_03320x213.jpg" crc="4118547369" seo="true" ref="index"/>
+    <file name="gallery_08359x218.jpg" crc="4277244124" seo="true" ref="index"/>
+    <file name="gallery_05320x213.jpg" crc="153789849" seo="true" ref="index"/>
+    <file name="gallery_02318x214.jpg" crc="3770733954" seo="true" ref="index"/>
+    <file name="gallery_07328x213.jpg" crc="448575797" seo="true" ref="index"/>
+    <file name="gallery_08353x213.jpg" crc="4203487034" seo="true" ref="index"/>
+    <file name="gallery_04320x213.jpg" crc="3811092392" seo="true" ref="index"/>
+  </folder>
+  <file name="index.html" crc="48266479" seo="true" mt="1454624251693" redirect="true"/>
+</manifest>
