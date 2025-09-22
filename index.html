@@ -324,28 +324,33 @@
 		border-radius: 3px;
 	}
 	
-	.copy-btn {
-		background: rgba(255, 255, 255, 0.2);
-		border: 1px solid rgba(255, 255, 255, 0.3);
-		color: white;
-		padding: 5px 10px;
-		border-radius: 15px;
-		cursor: pointer;
-		font-size: 0.8em;
-		margin-left: 10px;
-		transition: all 0.3s ease;
-		backdrop-filter: blur(10px);
-	}
-	
-	.copy-btn:hover {
-		background: rgba(255, 255, 255, 0.3);
-		transform: scale(1.05);
-	}
-	
-	.copy-btn.copied {
-		background: #4CAF50;
-		border-color: #4CAF50;
-	}
+.copy-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 12px; /* Уменьшил отступы */
+    border-radius: 50%; /* Круглая кнопка */
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    width: 36px; /* Фиксированная ширина */
+    height: 36px; /* Фиксированная высота */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.copy-btn.copied {
+    background: #4CAF50;
+    border-color: #4CAF50;
+}
 	
 	.contact-item {
 		position: relative;
@@ -425,14 +430,14 @@
                 <i class="fas fa-envelope"></i>
                 <span>illyavorobyov@yandex.ru</span>
                 <button class="copy-btn" data-text="illyavorobyov@yandex.ru">
-                    <i class="far fa-copy"></i> Копировать
+                    <i class="far fa-copy"></i>
                 </button>
             </div>
             <div class="contact-item">
                 <i class="fab fa-telegram"></i>
                 <span>@illyavorobyov</span>
                 <button class="copy-btn" data-text="@illyavorobyov">
-                    <i class="far fa-copy"></i> Копировать
+                    <i class="far fa-copy"></i>
                 </button>
             </div>
         </div>
@@ -545,69 +550,54 @@
 		</div>
 	</div>
 	<script>
-	// Функция копирования в буфер обмена
-	async function copyToClipboard(text) {
-		try {
-			await navigator.clipboard.writeText(text);
-			return true;
-		} catch(err) {
-			// Fallback для старых браузеров
-			const textArea = document.createElement('textarea');
-			textArea.value = text;
-			document.body.appendChild(textArea);
-			textArea.select();
-			try {
-				document.execCommand('copy');
-				return true;
-			} catch(fallbackErr) {
-				console.error('Ошибка копирования: ', fallbackErr);
-				return false;
-			} finally {
-				document.body.removeChild(textArea);
-			}
-		}
-	}
-	// Обработчик для всех кнопок копирования
-	document.addEventListener('DOMContentLoaded', function() {
-		const copyButtons = document.querySelectorAll('.copy-btn');
-		copyButtons.forEach(button => {
-			button.addEventListener('click', async function() {
-				const textToCopy = this.getAttribute('data-text');
-				const success = await copyToClipboard(textToCopy);
-				if(success) {
-					// Визуальный фидбек при успешном копировании
-					const originalHtml = this.innerHTML;
-					this.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
-					this.classList.add('copied');
-					// Восстанавливаем исходный текст через 1 секунду
-					setTimeout(() => {
-						this.innerHTML = originalHtml;
-						this.classList.remove('copied');
-					}, 1500);
-			});
-		});
-	});
-	// Функция показа уведомлений
-	function showNotification(message, type = 'success') {
-		// Удаляем предыдущие уведомления
-		const existingNotifications = document.querySelectorAll('.copy-notification');
-		existingNotifications.forEach(notif => notif.remove());
-		const notification = document.createElement('div');
-		notification.className = `copy-notification ${type}`;
-		notification.innerHTML = `
-            <i class="fas fa-${type === 'success' ? 'check' : 'exclamation-triangle'}"></i>
-            ${message}
-        `;
-		document.body.appendChild(notification);
-		// Анимация появления
-		setTimeout(() => notification.classList.add('show'), 100);
-		// Автоудаление через 3 секунды
-		setTimeout(() => {
-			notification.classList.remove('show');
-			setTimeout(() => notification.remove(), 300);
-		}, 3000);
-	}
-	</script>
+    // Функция копирования в буфер обмена
+    async function copyToClipboard(text) {
+        try {
+            await navigator.clipboard.writeText(text);
+            return true;
+        } catch(err) {
+            // Fallback для старых браузеров
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                return true;
+            } catch(fallbackErr) {
+                console.error('Ошибка копирования: ', fallbackErr);
+                return false;
+            } finally {
+                document.body.removeChild(textArea);
+            }
+        }
+    }
+
+    // Обработчик для всех кнопок копирования
+    document.addEventListener('DOMContentLoaded', function() {
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', async function() {
+                const textToCopy = this.getAttribute('data-text');
+                const success = await copyToClipboard(textToCopy);
+                
+                if(success) {
+                    // Визуальный фидбек при успешном копировании
+                    const originalHtml = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i>'; // Только иконка
+                    this.classList.add('copied');
+                    
+                    // Восстанавливаем исходный текст через 1.5 секунды
+                    setTimeout(() => {
+                        this.innerHTML = originalHtml;
+                        this.classList.remove('copied');
+                    }, 1500);
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
