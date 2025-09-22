@@ -174,30 +174,32 @@
 		border-left: 4px solid var(--primary);
 		transition: all 0.3s ease;
 		animation: fadeIn 0.6s ease;
+		display: flex;
+    	flex-direction: column;
+    	min-height: 180px;  
 	}
 	
 	.project-card:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    	transform: translateY(-5px);
+    	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 	}
 	
 	.project-card h3 {
-    	font-size: 1.1em;           
-    	white-space: normal;        
-    	height: auto;               
-    	line-height: 1.4;
-    	margin-bottom: 3px;
+    	color: var(--dark);
+    	margin-bottom: 10px;
+    	font-size: 1.1em;
 	}
 	
 	.project-description {
-		color: #666;
-		margin-bottom: 15px;
-		font-size: 0.9em;
+    	color: #666;
+    	margin-bottom: 15px;
+    	font-size: 0.9em;
+    	flex-grow: 1;
 	}
 	
 	.project-links {
-		display: flex;
-		gap: 10px;
+    	display: flex;
+    	gap: 10px;
 	}
 	
 	.btn {
