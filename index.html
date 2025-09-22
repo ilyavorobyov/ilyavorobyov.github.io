@@ -68,6 +68,8 @@
 
 		.header-content {
     flex: 1;
+			max-width: 70%; /* ← Текст займет максимум 70% ширины */
+    min-width: 300px; /* ← Но не менее 300px */
 }
 	
 .header h1 {
@@ -104,11 +106,12 @@
 	.contact-item {
 		display: flex;
 		align-items: center;
-		gap: 8px;
-		padding: 6px 15px;
+		gap: 6px;
+		padding: 5px 12px;
 		background: rgba(255, 255, 255, 0.1);
 		border-radius: 25px;
 		transition: transform 0.3s ease;
+		font-size: 0.9em;
 	}
 	
 	.contact-item:hover {
@@ -290,6 +293,12 @@
     .avatar {
         width: 120px;
         height: 120px;
+		border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgba(255,255,255,0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+    margin-left: 40px; /* ← Двигаем фото левее/правее */
     }
 .contact-info {
     display: flex;
@@ -328,15 +337,15 @@
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
-    padding: 5px 8px; /* Уменьшил отступы */
+    padding: 4px 6px; /* Уменьшил отступы */
     border-radius: 50%; /* Круглая кнопка */
     cursor: pointer;
     font-size: 0.8em;
     margin-left: 10px;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    width: 30px; /* Фиксированная ширина */
-    height: 30px; /* Фиксированная высота */
+    width: 28px; /* Фиксированная ширина */
+    height: 28px; /* Фиксированная высота */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -428,15 +437,15 @@
         <div class="contact-info">
             <div class="contact-item">
                 <i class="fas fa-envelope"></i>
-                <span>illyavorobyov@yandex.ru</span>
-                <button class="copy-btn" data-text="illyavorobyov@yandex.ru">
+                <span>iilyavorobyov@yandex.ru</span>
+                <button class="copy-btn" data-text="iilyavorobyov@yandex.ru">
                     <i class="far fa-copy"></i>
                 </button>
             </div>
             <div class="contact-item">
                 <i class="fab fa-telegram"></i>
-                <span>@illyavorobyov</span>
-                <button class="copy-btn" data-text="@illyavorobyov">
+                <span>@iilyavorobyov</span>
+                <button class="copy-btn" data-text="@iilyavorobyov">
                     <i class="far fa-copy"></i>
                 </button>
             </div>
