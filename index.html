@@ -314,6 +314,39 @@
     border-radius: 25px;
     transition: transform 0.3s ease;
 }
+
+        .copy-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    z-index: 10000;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.copy-notification.show {
+    transform: translateX(0);
+}
+
+.copy-notification.success {
+    background: #4CAF50;
+}
+
+.copy-notification.error {
+    background: #f44336;
+}
+
+.copy-notification i {
+    font-size: 1.2em;
+}
     </style>
 </head>
 <body>
@@ -489,26 +522,84 @@
         </div>
     </div>
 
-    <script>
-        // Анимация появления элементов при скролле
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+<script>
+    // Функция копирования в буфер обмена
+    async function copyToClipboard(text) {
+        try {
+            await navigator.clipboard.writeText(text);
+            return true;
+        } catch (err) {
+            // Fallback для старых браузеров
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                return true;
+            } catch (fallbackErr) {
+                console.error('Ошибка копирования: ', fallbackErr);
+                return false;
+            } finally {
+                document.body.removeChild(textArea);
+            }
+        }
+    }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
+    // Обработчик для всех кнопок копирования
+    document.addEventListener('DOMContentLoaded', function() {
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', async function() {
+                const textToCopy = this.getAttribute('data-text');
+                const success = await copyToClipboard(textToCopy);
+                
+                if (success) {
+                    // Визуальный фидбек при успешном копировании
+                    const originalHtml = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+                    this.classList.add('copied');
+                    
+                    // Восстанавливаем исходный текст через 2 секунды
+                    setTimeout(() => {
+                        this.innerHTML = originalHtml;
+                        this.classList.remove('copied');
+                    }, 2000);
+                    
+                    // Показываем уведомление
+                    showNotification('Скопировано: ' + textToCopy, 'success');
+                } else {
+                    showNotification('Ошибка копирования', 'error');
                 }
             });
-        }, observerOptions);
-
-        // Наблюдаем за карточками проектов
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.style.animation = 'fadeIn 0.6s ease paused';
-            observer.observe(card);
         });
-    </script>
+    });
+
+    // Функция показа уведомлений
+    function showNotification(message, type = 'success') {
+        // Удаляем предыдущие уведомления
+        const existingNotifications = document.querySelectorAll('.copy-notification');
+        existingNotifications.forEach(notif => notif.remove());
+        
+        const notification = document.createElement('div');
+        notification.className = `copy-notification ${type}`;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check' : 'exclamation-triangle'}"></i>
+            ${message}
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Анимация появления
+        setTimeout(() => notification.classList.add('show'), 100);
+        
+        // Автоудаление через 3 секунды
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+</script>
 </body>
 </html>
