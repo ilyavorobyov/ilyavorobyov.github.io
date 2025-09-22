@@ -280,6 +280,40 @@
             background: var(--primary);
             border-radius: 3px;
         }
+
+        .copy-btn {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.copy-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.05);
+}
+
+.copy-btn.copied {
+    background: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.contact-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 25px;
+    transition: transform 0.3s ease;
+}
     </style>
 </head>
 <body>
