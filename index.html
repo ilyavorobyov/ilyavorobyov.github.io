@@ -597,14 +597,14 @@
                     this.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
                     this.classList.add('copied');
                     
-                    // Восстанавливаем исходный текст через 2 секунды
+                    // Восстанавливаем исходный текст через 1 секунду
                     setTimeout(() => {
                         this.innerHTML = originalHtml;
                         this.classList.remove('copied');
                     }, 1000);
                     
                     // Показываем уведомление
-                    showNotification('Скопировано: ' + 'success');
+                    showNotification('Скопировано!' + 'success');
                 } else {
                     showNotification('Ошибка копирования', 'error');
                 }
