@@ -1,641 +1,584 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Илья Воробьев - Unity Developer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --primary: #667eea;
-            --secondary: #764ba2;
-            --accent: #ff6b6b;
-            --dark: #2c3e50;
-            --light: #f8f9fa;
-            --text: #333;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .resume {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-            margin: 40px 0;
-            animation: fadeIn 0.8s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .header {
-            background: linear-gradient(135deg, var(--dark) 0%, #34495e 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            animation: slideIn 0.8s ease;
-        }
-        
-        .header .subtitle {
-            font-size: 1.3em;
-            opacity: 0.9;
-            animation: slideIn 0.8s ease 0.2s both;
-        }
-        
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 25px;
-            transition: transform 0.3s ease;
-        }
-        
-        .contact-item:hover {
-            transform: translateY(-2px);
-        }
-        
-        .section {
-            padding: 40px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .section:last-child {
-            border-bottom: none;
-        }
-        
-        .section-title {
-            color: var(--dark);
-            font-size: 1.8em;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .section-title i {
-            color: var(--primary);
-        }
-        
-        .experience-item {
-            margin-bottom: 30px;
-            animation: slideIn 0.6s ease;
-        }
-        
-        .company {
-            font-size: 1.3em;
-            color: var(--dark);
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        
-        .period {
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 15px;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .project-card {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 20px;
-            border-left: 4px solid var(--primary);
-            transition: all 0.3s ease;
-            animation: fadeIn 0.6s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .project-card h3 {
-            color: var(--dark);
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-        
-        .project-description {
-            color: #666;
-            margin-bottom: 15px;
-            font-size: 0.9em;
-        }
-        
-        .project-links {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            font-size: 0.9em;
-        }
-        
-        .btn.github {
-            background: #333;
-            color: white;
-        }
-        
-        .btn.yandex {
-            background: #ffcc00;
-            color: #000;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        
-        .skill-category {
-            background: var(--light);
-            padding: 20px;
-            border-radius: 10px;
-        }
-        
-        .skill-category h4 {
-            color: var(--dark);
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-        
-        .skill-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .skill-tag {
-            background: var(--primary);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            transition: transform 0.3s ease;
-        }
-        
-        .skill-tag:hover {
-            transform: scale(1.05);
-        }
-        
-        .education-item {
-            margin-bottom: 20px;
-            animation: slideIn 0.6s ease;
-        }
-        
-        .institution {
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 5px;
-        }
-        
-        .degree {
-            color: #666;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 { font-size: 2em; }
-            .section { padding: 30px 20px; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .contact-info { flex-direction: column; align-items: center; }
-            .contact-item { width: 100%; justify-content: center; }
-        }
-        
-        .language-level {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 5px;
-        }
-        
-        .level-bar {
-            width: 100px;
-            height: 6px;
-            background: #ddd;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        
-        .level-fill {
-            height: 100%;
-            background: var(--primary);
-            border-radius: 3px;
-        }
-
-        .copy-btn {
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 0.8em;
-    margin-left: 10px;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.copy-btn:hover {
-    background: rgba(255,255,255,0.3);
-    transform: scale(1.05);
-}
-
-.copy-btn.copied {
-    background: #4CAF50;
-    border-color: #4CAF50;
-}
-
-.contact-item {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 20px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 25px;
-    transition: transform 0.3s ease;
-}
-
-        .copy-notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 20px;
-    border-radius: 8px;
-    color: white;
-    font-weight: 500;
-    z-index: 10000;
-    transform: translateX(400px);
-    transition: transform 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.copy-notification.show {
-    transform: translateX(0);
-}
-
-.copy-notification.success {
-    background: #4CAF50;
-}
-
-.copy-notification.error {
-    background: #f44336;
-}
-
-.copy-notification i {
-    font-size: 1.2em;
-}
-    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Илья Воробьев - Unity Developer</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	
+	:root {
+		--primary: #667eea;
+		--secondary: #764ba2;
+		--accent: #ff6b6b;
+		--dark: #2c3e50;
+		--light: #f8f9fa;
+		--text: #333;
+	}
+	
+	body {
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		line-height: 1.6;
+		color: var(--text);
+		background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+		min-height: 100vh;
+	}
+	
+	.container {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 20px;
+	}
+	
+	.resume {
+		background: white;
+		border-radius: 20px;
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+		overflow: hidden;
+		margin: 40px 0;
+		animation: fadeIn 0.8s ease;
+	}
+	
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	
+	.header {
+		background: linear-gradient(135deg, var(--dark) 0%, #34495e 100%);
+		color: white;
+		padding: 40px;
+		text-align: center;
+	}
+	
+	.header h1 {
+		font-size: 2.5em;
+		margin-bottom: 10px;
+		animation: slideIn 0.8s ease;
+	}
+	
+	.header .subtitle {
+		font-size: 1.3em;
+		opacity: 0.9;
+		animation: slideIn 0.8s ease 0.2s both;
+	}
+	
+	@keyframes slideIn {
+		from {
+			opacity: 0;
+			transform: translateX(-50px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+	
+	.contact-info {
+		display: flex;
+		justify-content: center;
+		gap: 30px;
+		margin-top: 20px;
+		flex-wrap: wrap;
+	}
+	
+	.contact-item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 10px 20px;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 25px;
+		transition: transform 0.3s ease;
+	}
+	
+	.contact-item:hover {
+		transform: translateY(-2px);
+	}
+	
+	.section {
+		padding: 40px;
+		border-bottom: 1px solid #eee;
+	}
+	
+	.section:last-child {
+		border-bottom: none;
+	}
+	
+	.section-title {
+		color: var(--dark);
+		font-size: 1.8em;
+		margin-bottom: 25px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+	
+	.section-title i {
+		color: var(--primary);
+	}
+	
+	.experience-item {
+		margin-bottom: 30px;
+		animation: slideIn 0.6s ease;
+	}
+	
+	.company {
+		font-size: 1.3em;
+		color: var(--dark);
+		margin-bottom: 5px;
+		font-weight: 600;
+	}
+	
+	.period {
+		color: var(--primary);
+		font-weight: 500;
+		margin-bottom: 15px;
+	}
+	
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 20px;
+		margin-top: 20px;
+	}
+	
+	.project-card {
+		background: var(--light);
+		border-radius: 12px;
+		padding: 20px;
+		border-left: 4px solid var(--primary);
+		transition: all 0.3s ease;
+		animation: fadeIn 0.6s ease;
+	}
+	
+	.project-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+	}
+	
+	.project-card h3 {
+		color: var(--dark);
+		margin-bottom: 10px;
+		font-size: 1.1em;
+	}
+	
+	.project-description {
+		color: #666;
+		margin-bottom: 15px;
+		font-size: 0.9em;
+	}
+	
+	.project-links {
+		display: flex;
+		gap: 10px;
+	}
+	
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px 16px;
+		border-radius: 6px;
+		text-decoration: none;
+		font-weight: 500;
+		transition: all 0.3s ease;
+		font-size: 0.9em;
+	}
+	
+	.btn.github {
+		background: #333;
+		color: white;
+	}
+	
+	.btn.yandex {
+		background: #ffcc00;
+		color: #000;
+	}
+	
+	.btn:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+	}
+	
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 15px;
+	}
+	
+	.skill-category {
+		background: var(--light);
+		padding: 20px;
+		border-radius: 10px;
+	}
+	
+	.skill-category h4 {
+		color: var(--dark);
+		margin-bottom: 15px;
+		font-size: 1.1em;
+	}
+	
+	.skill-items {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+	
+	.skill-tag {
+		background: var(--primary);
+		color: white;
+		padding: 5px 12px;
+		border-radius: 15px;
+		font-size: 0.85em;
+		transition: transform 0.3s ease;
+	}
+	
+	.skill-tag:hover {
+		transform: scale(1.05);
+	}
+	
+	.education-item {
+		margin-bottom: 20px;
+		animation: slideIn 0.6s ease;
+	}
+	
+	.institution {
+		font-weight: 600;
+		color: var(--dark);
+		margin-bottom: 5px;
+	}
+	
+	.degree {
+		color: #666;
+	}
+	
+	@media (max-width: 768px) {
+		.header h1 {
+			font-size: 2em;
+		}
+		.section {
+			padding: 30px 20px;
+		}
+		.projects-grid {
+			grid-template-columns: 1fr;
+		}
+		.contact-info {
+			flex-direction: column;
+			align-items: center;
+		}
+		.contact-item {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+	
+	.language-level {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin-top: 5px;
+	}
+	
+	.level-bar {
+		width: 100px;
+		height: 6px;
+		background: #ddd;
+		border-radius: 3px;
+		overflow: hidden;
+	}
+	
+	.level-fill {
+		height: 100%;
+		background: var(--primary);
+		border-radius: 3px;
+	}
+	
+	.copy-btn {
+		background: rgba(255, 255, 255, 0.2);
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		color: white;
+		padding: 5px 10px;
+		border-radius: 15px;
+		cursor: pointer;
+		font-size: 0.8em;
+		margin-left: 10px;
+		transition: all 0.3s ease;
+		backdrop-filter: blur(10px);
+	}
+	
+	.copy-btn:hover {
+		background: rgba(255, 255, 255, 0.3);
+		transform: scale(1.05);
+	}
+	
+	.copy-btn.copied {
+		background: #4CAF50;
+		border-color: #4CAF50;
+	}
+	
+	.contact-item {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 10px 20px;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 25px;
+		transition: transform 0.3s ease;
+	}
+	
+	.copy-notification {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		padding: 15px 20px;
+		border-radius: 8px;
+		color: white;
+		font-weight: 500;
+		z-index: 10000;
+		transform: translateX(400px);
+		transition: transform 0.3s ease;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+	
+	.copy-notification.show {
+		transform: translateX(0);
+	}
+	
+	.copy-notification.success {
+		background: #4CAF50;
+	}
+	
+	.copy-notification.error {
+		background: #f44336;
+	}
+	
+	.copy-notification i {
+		font-size: 1.2em;
+	}
+	
+	.avatar {
+		width: 120px;
+		height: 120px;
+		margin: 0 auto 20px;
+		border-radius: 50%;
+		overflow: hidden;
+		border: 4px solid rgba(255, 255, 255, 0.3);
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+	}
+	
+	.avatar img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	</style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="resume">
-<!-- Шапка -->
-<div class="header">
-    <h1>Воробьев Илья</h1>
-    <div class="subtitle">Unity Developer</div>
-    <div class="contact-info">
-        <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <span>iilyavorobyov@yandex.ru</span>
-            <button class="copy-btn" data-text="iilyavorobyov@yandex.ru">
-                <i class="far fa-copy"></i>
-            </button>
-        </div>
-        <div class="contact-item">
-            <i class="fab fa-telegram"></i>
-            <span>@iilyavorobyov</span>
-            <button class="copy-btn" data-text="@iilyavorobyov">
-                <i class="far fa-copy"></i>
-            </button>
-        </div>
-    </div>
-</div> 
-            <!-- Опыт работы -->
-            <div class="section">
-                <h2 class="section-title"><i class="fas fa-briefcase"></i> ОПЫТ РАБОТЫ</h2>
-                <div class="experience-item">
-                    <div class="company">AGAVA/ЯЮниор - Unity developer</div>
-                    <div class="period">04/2024-08/2025</div>
-                </div>
-                
-                <h3 style="margin: 30px 0 20px 0; color: var(--dark);">Мои проекты:</h3>
-                
-                <div class="projects-grid">
-                    <!-- Проект 1 -->
-                    <div class="project-card">
-                        <h3>Металлический шторм</h3>
-                        <p class="project-description">Командный проект, игра в жанре tower defense</p>
-                        <div class="project-links">
-                            <a href="https://github.com/ilyavorobyov/TowerDefenseTeamProject"
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn github">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="https://yandex.ru/games/app/464846?draft=true&lang=ru"
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn yandex">
-                                <i class="fas fa-gamepad"></i> Яндекс.Игры
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Проект 2 -->
-                    <div class="project-card">
-                        <h3>Инопланетное сражение с роботами</h3>
-                        <p class="project-description">Соло разработка, мидкорный шутер-боевик</p>
-                        <div class="project-links">
-                            <a href="https://github.com/ilyavorobyov/ShooterRoguelike"
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn github">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="https://yandex.ru/games/app/416232?draft=true&lang=ru"
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn yandex">
-                                <i class="fas fa-gamepad"></i> Яндекс.Игры
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Проект 3 -->
-                    <div class="project-card">
-                        <h3>Найтраннер</h3>
-                        <p class="project-description">Соло разработка, экшн раннер</p>
-                        <div class="project-links">
-                            <a href="https://github.com/ilyavorobyov/CyberpunkGravity" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn github">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="https://yandex.ru/games/app/416245?draft=true&lang=ru"
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn yandex">
-                                <i class="fas fa-gamepad"></i> Яндекс.Игры
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Проект 4 -->
-                    <div class="project-card">
-                        <h3>Крутящийся шанс</h3>
-                        <p class="project-description">Соло-разработанный слот с классическими символами</p>
-                        <div class="project-links">
-                            <a href="https://github.com/ilyavorobyov/SimpleSlot"
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn github">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="https://yandex.ru/games/app/468538?draft=true&lang=ru"
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn yandex">
-                                <i class="fas fa-gamepad"></i> Яндекс.Игры
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Проект 5 -->
-                    <div class="project-card">
-                        <h3>Фруктовое приключение</h3>
-                        <p class="project-description">Соло разработка, платформер-аркада</p>
-                        <div class="project-links">
-                            <a href="https://github.com/ilyavorobyov/Banana-Cat"
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn github">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="https://yandex.ru/games/app/416242?draft=true&lang=ru"
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn yandex">
-                                <i class="fas fa-gamepad"></i> Яндекс.Игры
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Проект 6 -->
-                    <div class="project-card">
-                        <h3>Побег Енота</h3>
-                        <p class="project-description">Соло разработка, платформер-аркада</p>
-                        <div class="project-links">
-                            <a href="https://github.com/ilyavorobyov/SSP"
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn github">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="https://yandex.ru/games/app/451379?draft=true&lang=ru"
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="btn yandex">
-                                <i class="fas fa-gamepad"></i> Яндекс.Игры
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Образование -->
-            <div class="section">
-                <h2 class="section-title"><i class="fas fa-graduation-cap"></i> ОБРАЗОВАНИЕ</h2>
-                <div class="education-item">
-                    <div class="institution">ЯЮниор</div>
-                    <div class="degree">C# Unity Developer</div>
-                </div>
-                <div class="education-item">
-                    <div class="institution">КНИТУ</div>
-                    <div class="degree">Менеджмент</div>
-                </div>
-            </div>
-            
-            <!-- Навыки -->
-            <div class="section">
-                <h2 class="section-title"><i class="fas fa-code"></i> НАВЫКИ</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4>Технологии</h4>
-                        <div class="skill-items">
-                            <span class="skill-tag">UNITY</span>
-                            <span class="skill-tag">C#</span>
-                            <span class="skill-tag">GIT</span>
-                            <span class="skill-tag">OOP</span>
-                            <span class="skill-tag">UNITASK</span>
-                            <span class="skill-tag">ZENJECT</span>
-                            <span class="skill-tag">SDK</span>
-                            <span class="skill-tag">DOTWEEN</span>
-                            <span class="skill-tag">PluginYG 2.0</span>
-                            <span class="skill-tag">UI TOOLKIT</span>
-                            <span class="skill-tag">UniRx</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Языки -->
-            <div class="section">
-                <h2 class="section-title"><i class="fas fa-language"></i> ЯЗЫКИ</h2>
-                <div class="language-item">
-                    <div style="font-weight: 600; margin-bottom: 10px;">Английский</div>
-                    <div class="language-level">
-                        <span>B1</span>
-                        <div class="level-bar">
-                            <div class="level-fill" style="width: 60%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<script>
-    // Функция копирования в буфер обмена
-    async function copyToClipboard(text) {
-        try {
-            await navigator.clipboard.writeText(text);
-            return true;
-        } catch (err) {
-            // Fallback для старых браузеров
-            const textArea = document.createElement('textarea');
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                return true;
-            } catch (fallbackErr) {
-                console.error('Ошибка копирования: ', fallbackErr);
-                return false;
-            } finally {
-                document.body.removeChild(textArea);
-            }
-        }
-    }
-
-    // Обработчик для всех кнопок копирования
-    document.addEventListener('DOMContentLoaded', function() {
-        const copyButtons = document.querySelectorAll('.copy-btn');
-        
-        copyButtons.forEach(button => {
-            button.addEventListener('click', async function() {
-                const textToCopy = this.getAttribute('data-text');
-                const success = await copyToClipboard(textToCopy);
-                
-                if (success) {
-                    // Визуальный фидбек при успешном копировании
-                    const originalHtml = this.innerHTML;
-                    this.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
-                    this.classList.add('copied');
-                    
-                    // Восстанавливаем исходный текст через 1 секунду
-                    setTimeout(() => {
-                        this.innerHTML = originalHtml;
-                        this.classList.remove('copied');
-                    }, 1000);
-                    
-                    // Показываем уведомление
-                    showNotification('Скопировано!', 'success');
-                } else {
-                    showNotification('Ошибка копирования', 'error');
-                }
-            });
-        });
-    });
-
-    // Функция показа уведомлений
-    function showNotification(message, type = 'success') {
-        // Удаляем предыдущие уведомления
-        const existingNotifications = document.querySelectorAll('.copy-notification');
-        existingNotifications.forEach(notif => notif.remove());
-        
-        const notification = document.createElement('div');
-        notification.className = `copy-notification ${type}`;
-        notification.innerHTML = `
+	<div class="container">
+		<div class="resume">
+			<!-- Шапка -->
+			<div class="header">
+				<!-- Добавьте этот блок с фото -->
+				<div class="avatar"> <img src="images/avatar.jpg" alt="Илья Воробьев"> </div>
+				<h1>Воробьев Илья</h1>
+				<div class="subtitle">Unity Developer</div>
+				<div class="contact-info">
+					<div class="contact-item"> <i class="fas fa-envelope"></i> <span>iilyavorobyov@yandex.ru</span>
+						<button class="copy-btn" data-text="iilyavorobyov@yandex.ru"> <i class="far fa-copy"></i> </button>
+					</div>
+					<div class="contact-item"> <i class="fab fa-telegram"></i> <span>@iilyavorobyov</span>
+						<button class="copy-btn" data-text="@iilyavorobyov"> <i class="far fa-copy"></i> </button>
+					</div>
+				</div>
+			</div>
+			<!-- Опыт работы -->
+			<div class="section">
+				<h2 class="section-title"><i class="fas fa-briefcase"></i> ОПЫТ РАБОТЫ</h2>
+				<div class="experience-item">
+					<div class="company">AGAVA/ЯЮниор - Unity developer</div>
+					<div class="period">04/2024-08/2025</div>
+				</div>
+				<h3 style="margin: 30px 0 20px 0; color: var(--dark);">Мои проекты:</h3>
+				<div class="projects-grid">
+					<!-- Проект 1 -->
+					<div class="project-card">
+						<h3>Металлический шторм</h3>
+						<p class="project-description">Командный проект, игра в жанре tower defense</p>
+						<div class="project-links">
+							<a href="https://github.com/ilyavorobyov/TowerDefenseTeamProject" target="_blank" rel="noopener noreferrer" class="btn github"> <i class="fab fa-github"></i> GitHub </a>
+							<a href="https://yandex.ru/games/app/464846?draft=true&lang=ru" target="_blank" rel="noopener noreferrer" class="btn yandex"> <i class="fas fa-gamepad"></i> Яндекс.Игры </a>
+						</div>
+					</div>
+					<!-- Проект 2 -->
+					<div class="project-card">
+						<h3>Инопланетное сражение с роботами</h3>
+						<p class="project-description">Соло разработка, мидкорный шутер-боевик</p>
+						<div class="project-links">
+							<a href="https://github.com/ilyavorobyov/ShooterRoguelike" target="_blank" rel="noopener noreferrer" class="btn github"> <i class="fab fa-github"></i> GitHub </a>
+							<a href="https://yandex.ru/games/app/416232?draft=true&lang=ru" target="_blank" rel="noopener noreferrer" class="btn yandex"> <i class="fas fa-gamepad"></i> Яндекс.Игры </a>
+						</div>
+					</div>
+					<!-- Проект 3 -->
+					<div class="project-card">
+						<h3>Найтраннер</h3>
+						<p class="project-description">Соло разработка, экшн раннер</p>
+						<div class="project-links">
+							<a href="https://github.com/ilyavorobyov/CyberpunkGravity" target="_blank" rel="noopener noreferrer" class="btn github"> <i class="fab fa-github"></i> GitHub </a>
+							<a href="https://yandex.ru/games/app/416245?draft=true&lang=ru" target="_blank" rel="noopener noreferrer" class="btn yandex"> <i class="fas fa-gamepad"></i> Яндекс.Игры </a>
+						</div>
+					</div>
+					<!-- Проект 4 -->
+					<div class="project-card">
+						<h3>Крутящийся шанс</h3>
+						<p class="project-description">Соло-разработанный слот с классическими символами</p>
+						<div class="project-links">
+							<a href="https://github.com/ilyavorobyov/SimpleSlot" target="_blank" rel="noopener noreferrer" class="btn github"> <i class="fab fa-github"></i> GitHub </a>
+							<a href="https://yandex.ru/games/app/468538?draft=true&lang=ru" target="_blank" rel="noopener noreferrer" class="btn yandex"> <i class="fas fa-gamepad"></i> Яндекс.Игры </a>
+						</div>
+					</div>
+					<!-- Проект 5 -->
+					<div class="project-card">
+						<h3>Фруктовое приключение</h3>
+						<p class="project-description">Соло разработка, платформер-аркада</p>
+						<div class="project-links">
+							<a href="https://github.com/ilyavorobyov/Banana-Cat" target="_blank" rel="noopener noreferrer" class="btn github"> <i class="fab fa-github"></i> GitHub </a>
+							<a href="https://yandex.ru/games/app/416242?draft=true&lang=ru" target="_blank" rel="noopener noreferrer" class="btn yandex"> <i class="fas fa-gamepad"></i> Яндекс.Игры </a>
+						</div>
+					</div>
+					<!-- Проект 6 -->
+					<div class="project-card">
+						<h3>Побег Енота</h3>
+						<p class="project-description">Соло разработка, платформер-аркада</p>
+						<div class="project-links">
+							<a href="https://github.com/ilyavorobyov/SSP" target="_blank" rel="noopener noreferrer" class="btn github"> <i class="fab fa-github"></i> GitHub </a>
+							<a href="https://yandex.ru/games/app/451379?draft=true&lang=ru" target="_blank" rel="noopener noreferrer" class="btn yandex"> <i class="fas fa-gamepad"></i> Яндекс.Игры </a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Образование -->
+			<div class="section">
+				<h2 class="section-title"><i class="fas fa-graduation-cap"></i> ОБРАЗОВАНИЕ</h2>
+				<div class="education-item">
+					<div class="institution">ЯЮниор</div>
+					<div class="degree">C# Unity Developer</div>
+				</div>
+				<div class="education-item">
+					<div class="institution">КНИТУ</div>
+					<div class="degree">Менеджмент</div>
+				</div>
+			</div>
+			<!-- Навыки -->
+			<div class="section">
+				<h2 class="section-title"><i class="fas fa-code"></i> НАВЫКИ</h2>
+				<div class="skills-grid">
+					<div class="skill-category">
+						<h4>Технологии</h4>
+						<div class="skill-items"> <span class="skill-tag">UNITY</span> <span class="skill-tag">C#</span> <span class="skill-tag">GIT</span> <span class="skill-tag">OOP</span> <span class="skill-tag">UNITASK</span> <span class="skill-tag">ZENJECT</span> <span class="skill-tag">SDK</span> <span class="skill-tag">DOTWEEN</span> <span class="skill-tag">PluginYG 2.0</span> <span class="skill-tag">UI TOOLKIT</span> <span class="skill-tag">UniRx</span> </div>
+					</div>
+				</div>
+			</div>
+			<!-- Языки -->
+			<div class="section">
+				<h2 class="section-title"><i class="fas fa-language"></i> ЯЗЫКИ</h2>
+				<div class="language-item">
+					<div style="font-weight: 600; margin-bottom: 10px;">Английский</div>
+					<div class="language-level"> <span>B1</span>
+						<div class="level-bar">
+							<div class="level-fill" style="width: 60%;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	// Функция копирования в буфер обмена
+	async function copyToClipboard(text) {
+		try {
+			await navigator.clipboard.writeText(text);
+			return true;
+		} catch(err) {
+			// Fallback для старых браузеров
+			const textArea = document.createElement('textarea');
+			textArea.value = text;
+			document.body.appendChild(textArea);
+			textArea.select();
+			try {
+				document.execCommand('copy');
+				return true;
+			} catch(fallbackErr) {
+				console.error('Ошибка копирования: ', fallbackErr);
+				return false;
+			} finally {
+				document.body.removeChild(textArea);
+			}
+		}
+	}
+	// Обработчик для всех кнопок копирования
+	document.addEventListener('DOMContentLoaded', function() {
+		const copyButtons = document.querySelectorAll('.copy-btn');
+		copyButtons.forEach(button => {
+			button.addEventListener('click', async function() {
+				const textToCopy = this.getAttribute('data-text');
+				const success = await copyToClipboard(textToCopy);
+				if(success) {
+					// Визуальный фидбек при успешном копировании
+					const originalHtml = this.innerHTML;
+					this.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+					this.classList.add('copied');
+					// Восстанавливаем исходный текст через 1 секунду
+					setTimeout(() => {
+						this.innerHTML = originalHtml;
+						this.classList.remove('copied');
+					}, 1000);
+					// Показываем уведомление
+					showNotification('Скопировано!', 'success');
+				} else {
+					showNotification('Ошибка копирования', 'error');
+				}
+			});
+		});
+	});
+	// Функция показа уведомлений
+	function showNotification(message, type = 'success') {
+		// Удаляем предыдущие уведомления
+		const existingNotifications = document.querySelectorAll('.copy-notification');
+		existingNotifications.forEach(notif => notif.remove());
+		const notification = document.createElement('div');
+		notification.className = `copy-notification ${type}`;
+		notification.innerHTML = `
             <i class="fas fa-${type === 'success' ? 'check' : 'exclamation-triangle'}"></i>
             ${message}
         `;
-        
-        document.body.appendChild(notification);
-        
-        // Анимация появления
-        setTimeout(() => notification.classList.add('show'), 100);
-        
-        // Автоудаление через 3 секунды
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-    }
-</script>
+		document.body.appendChild(notification);
+		// Анимация появления
+		setTimeout(() => notification.classList.add('show'), 100);
+		// Автоудаление через 3 секунды
+		setTimeout(() => {
+			notification.classList.remove('show');
+			setTimeout(() => notification.remove(), 300);
+		}, 3000);
+	}
+	</script>
 </body>
+
 </html>
