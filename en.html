@@ -11,6 +11,433 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #667eea;
+        --secondary: #764ba2;
+        --accent: #ff6b6b;
+        --dark: #2c3e50;
+        --light: #e9eff4;
+        --text: #333;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 5px;
+      }
+
+      .resume {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin: 5px 0;
+        animation: fadeIn 0.8s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header {
+        background: linear-gradient(135deg, var(--dark) 0%, #34495e 100%);
+        color: white;
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        position: relative;
+      }
+
+      .header-content {
+        flex: 1;
+        max-width: 70%; /* ← Текст займет максимум 70% ширины */
+        min-width: 300px; /* ← Но не менее 300px */
+      }
+
+      .header h1 {
+        font-size: 1.8em;
+        margin-bottom: 8px;
+        animation: slideIn 0.8s ease;
+      }
+
+      .header .subtitle {
+        font-size: 1.15em;
+        opacity: 0.9;
+        animation: slideIn 0.8s ease 0.2s both;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        transition: transform 0.3s ease;
+        font-size: 1em;
+      }
+
+      .contact-item:hover {
+        transform: translateY(-2px);
+      }
+
+      .section {
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .section:last-child {
+        border-bottom: none;
+      }
+
+      .section-title {
+        color: var(--dark);
+        font-size: 1.3em;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .section-title i {
+        color: var(--primary);
+      }
+
+      .experience-item {
+        margin-bottom: 30px;
+        animation: slideIn 0.6s ease;
+      }
+
+      .company {
+        font-size: 1.3em;
+        color: var(--dark);
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+
+      .period {
+        color: var(--primary);
+        font-weight: 500;
+        margin-bottom: 15px;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .project-card {
+        background: var(--light);
+        border-radius: 12px;
+        padding: 15px;
+        /* border-left: 4px solid var(--primary); */
+        transition: all 0.3s ease;
+        animation: fadeIn 0.6s ease;
+        display: flex;
+        flex-direction: column;
+        min-height: 180px;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .project-card h3 {
+        color: var(--dark);
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      .project-description {
+        color: #666;
+        margin-bottom: 15px;
+        font-size: 0.9em;
+        flex-grow: 1;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        font-size: 0.9em;
+      }
+
+      .btn.github {
+        background: #333;
+        color: white;
+      }
+
+      .btn.yandex {
+        background: #ffcc00;
+        color: #000;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .skill-category {
+        background: var(--light);
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .skill-category h4 {
+        color: var(--dark);
+        margin-bottom: 15px;
+        font-size: 1.1em;
+      }
+
+      .skill-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .skill-tag {
+        background: var(--primary);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        transition: transform 0.3s ease;
+      }
+
+      .skill-tag:hover {
+        transform: scale(1.05);
+      }
+
+      .education-item {
+        margin-bottom: 20px;
+        animation: slideIn 0.6s ease;
+      }
+
+      .institution {
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 5px;
+      }
+
+      .degree {
+        color: #666;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 2em;
+        }
+        .section {
+          padding: 25px 20px;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+        .header {
+          flex-direction: column-reverse;
+          text-align: center;
+          gap: 20px;
+        }
+        .avatar {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 4px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+          flex-shrink: 0;
+          margin-left: 40px; /* ← Двигаем фото левее/правее */
+        }
+        .contact-info {
+          display: flex;
+          gap: 30px;
+          margin-top: 20px;
+          flex-wrap: wrap;
+        }
+        .contact-item {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      .language-level {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 5px;
+      }
+
+      .level-bar {
+        width: 100px;
+        height: 6px;
+        background: #ddd;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+
+      .level-fill {
+        height: 100%;
+        background: var(--primary);
+        border-radius: 3px;
+      }
+
+      .copy-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 4px 6px; /* Уменьшил отступы */
+        border-radius: 50%; /* Круглая кнопка */
+        cursor: pointer;
+        font-size: 0.8em;
+        margin-left: 10px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        width: 28px; /* Фиксированная ширина */
+        height: 28px; /* Фиксированная высота */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .copy-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
+      }
+
+      .copy-btn.copied {
+        background: #4caf50;
+        border-color: #4caf50;
+      }
+
+      .contact-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        transition: transform 0.3s ease;
+      }
+
+      .copy-notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 500;
+        z-index: 10000;
+        transform: translateX(400px);
+        transition: transform 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .copy-notification.show {
+        transform: translateX(0);
+      }
+
+      .copy-notification.success {
+        background: #4caf50;
+      }
+
+      .copy-notification.error {
+        background: #f44336;
+      }
+
+      .copy-notification i {
+        font-size: 1.2em;
+      }
+
+      .avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        flex-shrink: 0;
+      }
+
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
   </head>
 
   <body>
@@ -64,7 +491,7 @@
         </div>
         <!-- Навыки -->
         <div class="section">
-          <h2 class="section-title"><i class="fas fa-code"></i> НАВЫКИ</h2>
+          <h2 class="section-title"><i class="fas fa-code"></i> SKILLS</h2>
           <div class="skills-grid">
             <div class="skill-category">
               <!--<h4>Технологии</h4> -->
